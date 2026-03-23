@@ -12,12 +12,18 @@ Designed as a **modular library** — use `chm2pdf.convert()` in your own projec
 - `pip install beautifulsoup4 playwright pypdf`
 - `playwright install chromium`
 
-Optional:
-- `pip install pychm` — cross-platform CHM extraction (required on macOS/Linux; requires C compiler)
-- `pip install weasyprint` — alternative PDF renderer (requires native GTK3/Pango libraries)
-- PrinceXML — alternative PDF renderer (if you have a license)
+### CHM extraction
 
-On Windows, the built-in `hh.exe` is used for CHM extraction automatically. On macOS/Linux, install pychm: `pip install chm2pdf[chm]`.
+CHM files must be extracted before conversion. The extractor is chosen automatically:
+
+| Platform | Extractor | Install | Notes |
+|---|---|---|---|
+| **Windows** | `hh.exe` (built-in) | Nothing — auto-detected | Ships with Windows, always available |
+| **macOS/Linux** | pychm | `pip install chm2pdf[chm]` | Requires a C compiler to build from source |
+
+On Windows, `hh.exe` is used by default. If you also install pychm, it takes priority. The GUI shows an `hh.exe path` field only when pychm is not installed.
+
+> **Why isn't pychm a required dependency?** pychm has a native C extension that must be compiled during installation. On Windows this requires [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) which most users don't have. Since Windows already has `hh.exe`, pychm is optional.
 
 ### PDF renderers
 
@@ -26,6 +32,8 @@ On Windows, the built-in `hh.exe` is used for CHM extraction automatically. On m
 | **Playwright** (default) | `pip install playwright && playwright install chromium` | Zero system deps, ~250MB Chromium download |
 | WeasyPrint | `pip install weasyprint` + native GTK3 libs | Requires MSYS2 on Windows, system packages on Linux |
 | PrinceXML | Commercial license | Proprietary, watermark without license |
+
+Only installed renderers appear in the GUI dropdown.
 
 ---
 
