@@ -9,15 +9,16 @@ Designed as a **modular library** — use `chm2pdf.convert()` in your own projec
 ## Requirements
 
 - Python 3.10+
-- `pip install beautifulsoup4 playwright pypdf`
+- `pip install beautifulsoup4 playwright pychm pypdf`
 - `playwright install chromium`
 
+All dependencies are installed automatically via `pip install chm2pdf`. The only extra step is `playwright install chromium` to download the browser binary.
+
 Optional:
-- `pip install pychm` — cross-platform CHM extraction (required on macOS/Linux)
 - `pip install weasyprint` — alternative PDF renderer (requires native GTK3/Pango libraries)
 - PrinceXML — alternative PDF renderer (if you have a license)
 
-On Windows without `pychm`, the built-in `hh.exe` is used for CHM extraction automatically.
+On Windows, `hh.exe` is available as a fallback CHM extractor if pychm fails.
 
 ### PDF renderers
 
